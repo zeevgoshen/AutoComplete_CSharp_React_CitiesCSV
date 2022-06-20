@@ -7,10 +7,8 @@ namespace SailPoint_AutoComplete_ZG.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    public class WeatherForecastController : ControllerBase
+    public class CitiesController : ControllerBase
     {
-
-        IMemoryCache cache = new MemoryCache(new MemoryCacheOptions());
         List<CitiesModel> allCities;
 
 
@@ -19,9 +17,9 @@ namespace SailPoint_AutoComplete_ZG.Controllers
             "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
         };
 
-        private readonly ILogger<WeatherForecastController> _logger;
+        private readonly ILogger<CitiesController> _logger;
 
-        public WeatherForecastController(ILogger<WeatherForecastController> logger)
+        public CitiesController(ILogger<CitiesController> logger)
         {
             _logger = logger;
             
