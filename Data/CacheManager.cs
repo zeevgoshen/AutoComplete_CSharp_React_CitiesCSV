@@ -6,7 +6,7 @@ namespace SailPoint_AutoComplete_ZG.Data
     public sealed class CacheManager
     {
         private static object syncRoot = new Object();
-        private static CacheManager instance;
+        private static CacheManager? instance;
 
         public static CacheManager Instance
         {
