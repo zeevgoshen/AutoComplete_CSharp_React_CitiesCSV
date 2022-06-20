@@ -10,4 +10,4 @@ Open with Visual Studio 2022, run the solution
 Option 2:
 in terminal:
 cd into SailPoint_AutoComplete_ZG
-run - dotnet run
+and run - dotnet run
