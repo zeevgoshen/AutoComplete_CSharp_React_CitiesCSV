@@ -1,4 +1,5 @@
 ﻿using SailPoint_AutoComplete_ZG.Logic.Models;
+using System.Collections.Concurrent;
 
 namespace SailPoint_AutoComplete_ZG.Data
 {
@@ -26,9 +27,10 @@ namespace SailPoint_AutoComplete_ZG.Data
             }
         }
 
-        public List<CitiesModel> GetAllCities()
+        public ConcurrentBag<CitiesModel> GetAllCities()
         {
-            List<CitiesModel>? allCities = System.Runtime.Caching.MemoryCache.Default["allCities"] as List<CitiesModel>;
+            ConcurrentBag<CitiesModel>? allCities = System.Runtime.Caching.MemoryCache.Default["allCities"] as ConcurrentBag<CitiesModel>;
+            
             if (allCities == null)
             {
                 allCities = Utils.ReadCSVFile();

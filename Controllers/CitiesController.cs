@@ -17,21 +17,6 @@ namespace SailPoint_AutoComplete_ZG.Controllers
             _logger = logger;            
         }
 
-        
-
-        //public List<CitiesModel> GetAllCities()
-        //{
-        //    List<CitiesModel>? allCities = System.Runtime.Caching.MemoryCache.Default["names"] as List<CitiesModel>;
-        //    if (allCities == null)
-        //    {
-        //        allCities = Utils.ReadCSVFile();
-        //        System.Runtime.Caching.MemoryCache.Default["names"] = allCities;
-                
-        //    }
-
-        //    return allCities;
-        //}
-
 
         [HttpGet]
         public IEnumerable<CitiesModel> Get()
