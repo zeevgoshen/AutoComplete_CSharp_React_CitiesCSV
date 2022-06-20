@@ -28,12 +28,11 @@ namespace SailPoint_AutoComplete_ZG.Data
 
         public List<CitiesModel> GetAllCities()
         {
-            List<CitiesModel>? allCities = System.Runtime.Caching.MemoryCache.Default["names"] as List<CitiesModel>;
+            List<CitiesModel>? allCities = System.Runtime.Caching.MemoryCache.Default["allCities"] as List<CitiesModel>;
             if (allCities == null)
             {
                 allCities = Utils.ReadCSVFile();
-                System.Runtime.Caching.MemoryCache.Default["names"] = allCities;
-
+                System.Runtime.Caching.MemoryCache.Default["allCities"] = allCities;                
             }
 
             return allCities;
