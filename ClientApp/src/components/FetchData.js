@@ -1,61 +1,66 @@
-import React, { Component } from 'react';
+import React, { Component, useEffect, useState } from 'react';
 import AutoComplete from './AutoComplete'
+import axios from "axios";
 
-export class FetchData extends Component {
-  static displayName = FetchData.name;
+export default function FetchData() {
 
-  constructor(props) {
-    super(props);
-    this.state = { forecasts: [], loading: true };
-  }
+    const [cities, setCities] = useState([]);
 
-  componentDidMount() {
-    this.populateWeatherData();
-  }
+    const getAllCities = async () => {
 
-  static renderForecastsTable(forecasts) {
+        const data = await axios
+            .get('cities')
+            .then((response) => setCities(response.data))
+            .catch((err) => console.log(err));
+    };
+
+    const citiesData = useEffect(() => {
+        getAllCities();
+    }, []);
+    
+
+    const renderForecastsTable = (forecasts) => {
+
+        console.log("renderForecastsTable");
+        
+        return (
+            <div>
+                <table className='table table-striped' aria-labelledby="tabelLabel">
+                    <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>Temp. (C)</th>
+                            <th>Temp. (F)</th>
+                            <th>Summary</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                        {forecasts && forecasts.map(forecast =>
+                            <tr key={forecast.id}>
+                                <td>{forecast.cityName}</td>
+                                <td>{forecast.id}</td>
+                                {/*<td>{forecast.temperatureF}</td>*/}
+                                {/*<td>{forecast.summary}</td>*/}
+                            </tr>
+                        )}
+                    </tbody>
+                </table>
+            </div>
+        );
+    }
+
+    //let contents = renderForecastsTable();
+    
+
     return (
-      <table className='table table-striped' aria-labelledby="tabelLabel">
-        <thead>
-          <tr>
-            <th>Date</th>
-            <th>Temp. (C)</th>
-            <th>Temp. (F)</th>
-            <th>Summary</th>
-          </tr>
-        </thead>
-        <tbody>
-          {forecasts.map(forecast =>
-            <tr key={forecast.cityName}>
-            <td>{forecast.cityName}</td>
-              {/*<td>{forecast.temperatureC}</td>*/}
-              {/*<td>{forecast.temperatureF}</td>*/}
-              {/*<td>{forecast.summary}</td>*/}
-            </tr>
-          )}
-        </tbody>
-      </table>
+        <div>
+            
+            <h1 id="tabelLabel">Cities Autocomplete</h1>
+            <p>This component demonstrates fetching data from the server.</p>
+            {/*{contents}*/}
+            <AutoComplete loadIssues={setCities} fullData={cities}/>
+        </div>
     );
-  }
-
-  render() {
-    let contents = this.state.loading
-      ? <p><em>Loading...</em></p>
-      : FetchData.renderForecastsTable(this.state.forecasts);
-
-    return (
-      <div>
-        <h1 id="tabelLabel" >Weather forecast</h1>
-        <p>This component demonstrates fetching data from the server.</p>
-            {contents}
-            <AutoComplete />
-      </div>
-    );
-  }
-
-  async populateWeatherData() {
-    const response = await fetch('cities');
-    const data = await response.json();
-    this.setState({ forecasts: data, loading: false });
-  }
+     
 }
