@@ -2,13 +2,13 @@
 {
 }
 .suggestionList {
-    padding: 10px;
+    /*padding: 10px;*/
     height: auto;
     width: auto;
 }
 
 .suggestionLabels {
-    margin-bottom: 20px;
+    margin: 20px 0px 20px 0px;
     font-size:18px;
 }
 
@@ -29,4 +29,6 @@
 }
 .secondaryTitle {
     font-size: 22px;
+    background-color:aquamarine;
+    text-align:center;
 }

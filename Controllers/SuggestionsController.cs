@@ -66,6 +66,11 @@ namespace SailPoint_AutoComplete_ZG.Controllers
         {
             List<CitiesModel> result = new List<CitiesModel>();
 
+            if (trie == null)
+            {
+                return null;
+            }
+
             List<int> indices = trie.Collect(prefix);
 
             CitiesModel city;
