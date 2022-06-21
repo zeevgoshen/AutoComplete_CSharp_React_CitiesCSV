@@ -29,22 +29,22 @@ const AutoComplete = () => {
     }, [filterText]);
 
 
-     
-    const selectText =(text) =>{
+
+    const selectText = (text) => {
         setInputValue(text);
     }
 
     return <div className="suggestionList">
         <div className="suggestionLabels">
             <label className="suggestionLabels">Start typing a city name...</label>
-            <div className="selectedValue">{inputValue}</div>
-        <input type="text" onChange={(e) => {
-                    setFilter(e.target.value);
+            <div className="selectedValue">{filterText.length > 0 ? inputValue : ""}</div>
+            <input type="text" onChange={(e) => {
+                setFilter(e.target.value);
             }} />
         </div>
         <ul>
-            {cities && cities.map((city) => <li key={city.id} onClick={(e) => selectText(city.cityName)}>{city.cityName}</li>)}
-                </ul>
+            {filterText.length > 0 && cities && cities.map((city) => <li key={city.id} onClick={(e) => selectText(city.cityName)}>{city.cityName}</li>)}
+        </ul>
 
     </div>
 }
