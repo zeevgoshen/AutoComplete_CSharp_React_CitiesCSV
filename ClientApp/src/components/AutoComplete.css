@@ -14,7 +14,8 @@
 
 .selectedValue {
     height:40px;
-    width:200px;
+    width:300px;
+    margin-bottom:40px;
 }
 .autoCompleteInput{
     border-radius: 25px;

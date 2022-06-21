@@ -47,6 +47,7 @@ const AutoComplete = () => {
             <div className="selectedValue">{filterText.length > 0 ? inputValue : ' '}</div>
 
             <input className="autoCompleteInput" type="text" onChange={(e) => {
+                setInputValue();
                 setFilter(e.target.value);
             }} />
         </div>
