@@ -1,5 +1,6 @@
 ﻿using SailPoint_AutoComplete_ZG.Logic.Models;
 using System.Collections.Concurrent;
+using TriesLib;
 
 namespace SailPoint_AutoComplete_ZG.Data
 {
@@ -38,6 +39,36 @@ namespace SailPoint_AutoComplete_ZG.Data
             }
 
             return allCities;
+        }
+
+        public List<string> GetAllCitiesStringList()
+        {
+            List<string>? allCities = System.Runtime.Caching.MemoryCache.Default["allCitiesStrings"] as List<string>;
+
+            if (allCities == null)
+            {
+                allCities = Utils.ReadCSVFileToStringList();
+                System.Runtime.Caching.MemoryCache.Default["allCitiesStrings"] = allCities;
+            }
+
+            return allCities;
+        }
+
+        public void SaveTrieOfFirstLetter(Trie trie, string searchString)
+        {
+            System.Runtime.Caching.MemoryCache.Default[searchString] = trie;
+        }
+
+        public Trie RetrieveTrieOfFirstLetter(string searchString)
+        {
+            string key = string.Empty;
+
+            if (searchString != null)
+            {
+                key = searchString.Substring(0,1);
+                return System.Runtime.Caching.MemoryCache.Default[key] as Trie;
+            }
+            return null;
         }
     }
 }

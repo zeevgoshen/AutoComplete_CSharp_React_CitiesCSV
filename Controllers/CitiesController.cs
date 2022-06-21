@@ -18,10 +18,17 @@ namespace SailPoint_AutoComplete_ZG.Controllers
         }
 
 
+        //[HttpGet]
+        //public IEnumerable<CitiesModel> Get()
+        //{
+        //    return CacheManager.Instance.GetAllCities();
+
+        //}
+
         [HttpGet]
-        public IEnumerable<CitiesModel> Get()
+        public List<string> Get()
         {
-            return CacheManager.Instance.GetAllCities();
+            return CacheManager.Instance.GetAllCitiesStringList();
 
         }
     }

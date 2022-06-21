@@ -29,5 +29,24 @@ namespace SailPoint_AutoComplete_ZG.Data
             return citiesList;
         }
 
+
+        public static List<string> ReadCSVFileToStringList()
+        {
+            string[] paths = { @Environment.CurrentDirectory, @"Data\world-cities_csv.csv" };
+            string fullPath = Path.Combine(paths);
+
+            StreamReader reader = new StreamReader(System.IO.File.OpenRead(fullPath));
+
+            var citiesList = new List<string>();
+            string row;
+
+            while ((row = reader.ReadLine()) != null)
+            {
+                citiesList.Add(row);
+            }
+            reader.Close();
+
+            return citiesList;
+        }
     }
 }
