@@ -24,6 +24,9 @@
     display: grid;
     justify-content: center;
     align-content: center;
+    margin-top:40px;
+    height:auto;
+    width:auto;
 }
 .mainTitle{
     font-size:28px;
