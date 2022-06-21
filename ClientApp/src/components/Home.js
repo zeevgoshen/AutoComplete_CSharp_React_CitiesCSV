@@ -1,5 +1,6 @@
 import React, { Component, useEffect, useState } from 'react';
 import AutoComplete from './AutoComplete'
+import './AutoComplete.css'
 import axios from "axios";
 
 export default function Home() {
@@ -20,10 +21,10 @@ export default function Home() {
      
 
     return (
-        <div>
-            
-            <h1 id="tabelLabel">SailPoint Cities Autocomplete</h1>
-            <p>This component demonstrates fetching data from the server.</p>
+        <div className="main_content">
+
+            <label className="mainTitle">SailPoint Cities Autocomplete</label>
+            <label className="secondaryTitle">The search is Case Sensitive.</label>
             {/*{contents}*/}
             <AutoComplete />
         </div>

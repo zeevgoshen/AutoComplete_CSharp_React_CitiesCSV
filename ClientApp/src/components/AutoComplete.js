@@ -37,8 +37,10 @@ const AutoComplete = () => {
     return <div className="suggestionList">
         <div className="suggestionLabels">
             <label className="suggestionLabels">Start typing a city name...</label>
+
             <div className="selectedValue">{filterText.length > 0 ? inputValue : ""}</div>
-            <input type="text" onChange={(e) => {
+
+            <input className="autoCompleteInput" type="text" onChange={(e) => {
                 setFilter(e.target.value);
             }} />
         </div>

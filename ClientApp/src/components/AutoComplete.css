@@ -2,19 +2,31 @@
 {
 }
 .suggestionList {
-    
-    padding:10px;
-    height: 700px;
-    width: 200px;
+    padding: 10px;
+    height: auto;
+    width: auto;
 }
 
-.suggestionLabels{
-    
-     margin-bottom:20px;
-     
+.suggestionLabels {
+    margin-bottom: 20px;
+    font-size:18px;
 }
 
 .selectedValue {
     height:40px;
     width:200px;
+}
+.autoCompleteInput{
+    border-radius: 25px;
+}
+.main_content {
+    display: grid;
+    justify-content: center;
+    align-content: center;
+}
+.mainTitle{
+    font-size:28px;
+}
+.secondaryTitle {
+    font-size: 22px;
 }
