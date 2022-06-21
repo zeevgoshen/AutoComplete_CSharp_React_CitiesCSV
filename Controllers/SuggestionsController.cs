@@ -46,7 +46,7 @@ namespace SailPoint_AutoComplete_ZG.Controllers
                 {
                     if (allCitiesStrings[j] != null)
                     {
-                        trie.Insert(allCitiesStrings[j], j);
+                        trie.Insert(allCitiesStrings[j].ToLowerInvariant(), j);
                     }
                 }
                 // Save trie of first letter in cache
