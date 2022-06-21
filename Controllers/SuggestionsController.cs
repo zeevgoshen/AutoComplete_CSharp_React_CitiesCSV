@@ -29,6 +29,7 @@ namespace SailPoint_AutoComplete_ZG.Controllers
             Trie? trie = null;
             var dict = JsonSerializer.Deserialize<Dictionary<string, string>>(text);
             string searchString = dict["text"].ToString();
+            searchString = searchString.ToLowerInvariant();
 
             // **************************************************************
             // when the app first loads, the full list is saved in the cache.

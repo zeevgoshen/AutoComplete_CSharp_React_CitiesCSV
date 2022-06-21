@@ -24,7 +24,7 @@ export default function Home() {
         <div className="main_content">
 
             <label className="mainTitle">SailPoint Cities Autocomplete</label>
-            <label className="secondaryTitle">The search is Case Sensitive.</label>
+            <label className="secondaryTitle">The search is not case sensitive.</label>
             <AutoComplete />
         </div>
     );
