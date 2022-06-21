@@ -1,37 +1,23 @@
 ﻿import React, { Component, useMemo, useState, useEffect } from 'react';
 import axios from 'axios';
 import './AutoComplete.css'
-//import getFilteredCities from '../services/data.service'
 
 const AutoComplete = () => {
 
     const [filterText, setFilter] = useState('');
     const [cities, setCities] = useState([]);
 
-
     const getFilteredCities = async () => {
-
 
         const options = {
             headers: { "content-type": "application/json" }
         }
 
-        console.log("getFilteredCities1111");
         const data = await axios
             .post('suggestions', { "text": filterText }, options)
             .then((response) => setCities(response.data))
             .catch((err) => console.log(err));
     };
-
-
-    const citiesData = useEffect(() => {
-
-
-        console.log("citiesData = useEffect" + cities);
-
-
-    }, []);
-
 
     let filteredCities = useMemo(() => {
         // no search text in the search textbox
@@ -41,18 +27,23 @@ const AutoComplete = () => {
         }
     }, [filterText]);
 
+
+    let inputValue = "";
     const selectText =(text) =>{
         console.log(text);
+        inputValue = text;
+        //setFilter(text);
+        
     }
 
     return <div className="suggestionList">
-        <label>enter a city</label>
+                <label>Start typing a city name...</label>
         <input type="text" onChange={(e) => {
-            setFilter(e.target.value);
-        }} />
-        <ul>
-            {cities && cities.map((city) => <li key={city.id} onClick={(e) => e.target.value}>{city.cityName}</li>)}
-        </ul>
+                    setFilter(e.target.value);
+                }} />
+                <ul>
+            {cities && cities.map((city) => <li key={city.id} onClick={(e) => selectText(city.cityName)}>{city.cityName}</li>)}
+                </ul>
 
     </div>
 }
