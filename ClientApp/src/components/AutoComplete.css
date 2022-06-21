@@ -3,8 +3,18 @@
 }
 .suggestionList {
     
-    
+    padding:10px;
     height: 700px;
     width: 200px;
- 
+}
+
+.suggestionLabels{
+    
+     margin-bottom:20px;
+     
+}
+
+.selectedValue {
+    height:40px;
+    width:100px;
 }

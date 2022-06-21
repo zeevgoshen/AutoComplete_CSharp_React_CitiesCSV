@@ -7,6 +7,7 @@ const AutoComplete = () => {
     const [filterText, setFilter] = useState('');
     const [cities, setCities] = useState([]);
 
+    const [inputValue, setInputValue] = useState([]);
     const getFilteredCities = async () => {
 
         const options = {
@@ -28,20 +29,20 @@ const AutoComplete = () => {
     }, [filterText]);
 
 
-    let inputValue = "";
+     
     const selectText =(text) =>{
-        console.log(text);
-        inputValue = text;
-        //setFilter(text);
-        
+        setInputValue(text);
     }
 
     return <div className="suggestionList">
-                <label>Start typing a city name...</label>
+        <div className="suggestionLabels">
+            <label className="suggestionLabels">Start typing a city name...</label>
+            <div className="selectedValue">{inputValue}</div>
         <input type="text" onChange={(e) => {
                     setFilter(e.target.value);
-                }} />
-                <ul>
+            }} />
+        </div>
+        <ul>
             {cities && cities.map((city) => <li key={city.id} onClick={(e) => selectText(city.cityName)}>{city.cityName}</li>)}
                 </ul>
 
