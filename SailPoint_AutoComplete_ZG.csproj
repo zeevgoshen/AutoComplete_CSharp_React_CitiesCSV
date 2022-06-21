@@ -27,7 +27,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="ClientApp\src\services\" />
     <Folder Include="Data\Trie\" />
   </ItemGroup>
 

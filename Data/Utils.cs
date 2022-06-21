@@ -10,7 +10,7 @@ namespace SailPoint_AutoComplete_ZG.Data
             string[] paths = { @Environment.CurrentDirectory, @"Data\world-cities_csv.csv" };
             string fullPath = Path.Combine(paths);
 
-            StreamReader reader = new StreamReader(System.IO.File.OpenRead(fullPath));
+            StreamReader reader = new StreamReader(File.OpenRead(fullPath));
 
             var citiesList = new ConcurrentBag<CitiesModel>();
             string row;
@@ -35,7 +35,7 @@ namespace SailPoint_AutoComplete_ZG.Data
             string[] paths = { @Environment.CurrentDirectory, @"Data\world-cities_csv.csv" };
             string fullPath = Path.Combine(paths);
 
-            StreamReader reader = new StreamReader(System.IO.File.OpenRead(fullPath));
+            StreamReader reader = new StreamReader(File.OpenRead(fullPath));
 
             var citiesList = new List<string>();
             string row;
