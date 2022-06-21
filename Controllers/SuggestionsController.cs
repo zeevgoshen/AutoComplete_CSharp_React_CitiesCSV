@@ -43,13 +43,16 @@ namespace SailPoint_AutoComplete_ZG.Controllers
             {
                 trie = new Trie();
 
-                for (int j = 0; j < allCitiesStrings.Count - 1; ++j)
+                int j = 0;
+                foreach (string city in allCitiesStrings)
                 {
-                    if (allCitiesStrings[j] != null)
+                    if (city != null)
                     {
-                        trie.Insert(allCitiesStrings[j].ToLowerInvariant(), j);
+                        trie.Insert(city.ToLowerInvariant(), j);
+                        j++;
                     }
                 }
+
                 // Save trie of first letter in cache
                 CacheManager.Instance.SaveTrieOfFirstLetter(trie, searchString);
 
