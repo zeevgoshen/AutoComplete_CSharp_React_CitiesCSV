@@ -28,6 +28,7 @@ export default function Home() {
             <label className="secondaryTitle">2. The search currently is done letter-by-letter. Using
                 de-bounce the search can be improved by setting it to start at small time intervals such as 500ms to reduce
                 API calls.</label>
+            <label className="secondaryTitle">3. See the github readme for more details.</label>
             <AutoComplete />
         </div>
     );
