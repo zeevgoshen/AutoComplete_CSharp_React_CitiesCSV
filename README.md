@@ -29,3 +29,6 @@ https://visualstudiomagazine.com/Articles/2015/10/20/Text-Pattern-Search-Trie-Cl
 3. The Cache Manager is a double-check Singleton to provide thread-safety.
 https://riptutorial.com/csharp/example/3864/lazy--thread-safe-singleton--using-double-checked-locking-
 
+4. Cypress is used for testing the client.
+
+5. De-bounce should be considered as a way to reduce api calls.
