@@ -26,9 +26,18 @@ Server summary:
 https://visualstudiomagazine.com/Articles/2015/10/20/Text-Pattern-Search-Trie-Class-NET.aspx?Page=1
 
 2. I used Caching to avoid expansive data fetching (in this case a CSV file, could be DB or others)
+
 3. The Cache Manager is a double-check Singleton to provide thread-safety.
 https://riptutorial.com/csharp/example/3864/lazy--thread-safe-singleton--using-double-checked-locking-
 
-4. Cypress is used for testing the client.
+4. Trie usage can be optimized.
 
-5. De-bounce should be considered as a way to reduce api calls.
+
+
+Client summary:
+
+1. Cypress is used for testing the client.
+
+2. De-bounce should be considered as a way to reduce api calls.
+
+3. Other client side caching strategies rather than useState can be considered. 
