@@ -57,7 +57,7 @@ namespace SailPoint_AutoComplete_ZG.Controllers
                 CacheManager.Instance.SaveTrieOfFirstLetter(trie, searchString);
 
             }
-            else if (searchString.Length > 1)
+            else if (searchString.Length > 1 || trie == null)
             {
                 trie = CacheManager.Instance.RetrieveTrieOfFirstLetter(searchString);
             }
