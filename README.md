@@ -26,5 +26,5 @@ https://visualstudiomagazine.com/Articles/2015/10/20/Text-Pattern-Search-Trie-Cl
 
 2. I used Caching to avoid expansive data fetching (in this case a CSV file, could be DB or others)
 3. The Cache Manager is a double-check Singleton to provide thread-safety.
-
+https://riptutorial.com/csharp/example/3864/lazy--thread-safe-singleton--using-double-checked-locking-
 
