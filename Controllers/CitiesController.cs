@@ -17,14 +17,6 @@ namespace SailPoint_AutoComplete_ZG.Controllers
             _logger = logger;            
         }
 
-
-        //[HttpGet]
-        //public IEnumerable<CitiesModel> Get()
-        //{
-        //    return CacheManager.Instance.GetAllCities();
-
-        //}
-
         [HttpGet]
         public List<string> Get()
         {

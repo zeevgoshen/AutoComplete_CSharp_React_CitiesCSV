@@ -1,5 +1,6 @@
 ﻿//using ArrayTries;
 using Microsoft.AspNetCore.Mvc;
+using SailPoint_AutoComplete_ZG.Constants;
 using SailPoint_AutoComplete_ZG.Data;
 using SailPoint_AutoComplete_ZG.Logic.Models;
 using System.Collections.Concurrent;
@@ -13,19 +14,18 @@ namespace SailPoint_AutoComplete_ZG.Controllers
     [Route("[controller]")]
     public class SuggestionsController : ControllerBase
     {
-
         private readonly ILogger<SuggestionsController> _logger;
 
         public SuggestionsController(ILogger<SuggestionsController> logger)
         {
-            _logger = logger;            
+            _logger = logger;
         }
 
 
         [HttpPost]
         public IEnumerable<CitiesModel> Post([FromBody] JsonElement text)
         {
-            List<string> allCitiesStrings;// = new List<string>();
+            List<string> allCitiesStrings;
             Trie? trie = null;
             var dict = JsonSerializer.Deserialize<Dictionary<string, string>>(text);
             string searchString = dict["text"].ToString();
@@ -56,12 +56,12 @@ namespace SailPoint_AutoComplete_ZG.Controllers
                 // Save trie of first letter in cache
                 CacheManager.Instance.SaveTrieOfFirstLetter(trie, searchString);
 
-            } 
+            }
             else if (searchString.Length > 1)
             {
                 trie = CacheManager.Instance.RetrieveTrieOfFirstLetter(searchString);
             }
- 
+
             return SendResultsList(searchString, trie, allCitiesStrings);
 
         }
@@ -86,9 +86,10 @@ namespace SailPoint_AutoComplete_ZG.Controllers
                     city.Id = i;
                     result.Add(city);
                 }
-            } else
+            }
+            else
             {
-                city = new CitiesModel("No such city.");
+                city = new CitiesModel(Messages.NO_CITY_FOUND);
                 city.Id = 0;
                 result.Add(city);
             }

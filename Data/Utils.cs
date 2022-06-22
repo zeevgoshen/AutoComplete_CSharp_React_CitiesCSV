@@ -1,4 +1,5 @@
-﻿using SailPoint_AutoComplete_ZG.Logic.Models;
+﻿using SailPoint_AutoComplete_ZG.Constants;
+using SailPoint_AutoComplete_ZG.Logic.Models;
 using System.Collections.Concurrent;
 
 namespace SailPoint_AutoComplete_ZG.Data
@@ -7,14 +8,14 @@ namespace SailPoint_AutoComplete_ZG.Data
     {
         public static ConcurrentBag<CitiesModel> ReadCSVFile()
         {
-            string[] paths = { @Environment.CurrentDirectory, @"Data\world-cities_csv.csv" };
+            string[] paths = { @Environment.CurrentDirectory, Messages.DATA_FILE_WIN };
             string fullPath = Path.Combine(paths);
 
             StreamReader reader;
 
             if (!File.Exists(fullPath))
             {                
-                string[] osxPaths = { @Environment.CurrentDirectory, @"Data/world-cities_csv.csv" };
+                string[] osxPaths = { @Environment.CurrentDirectory, Messages.DATA_FILE_OSX };
                 fullPath = Path.Combine(osxPaths);
             }
 
@@ -39,14 +40,14 @@ namespace SailPoint_AutoComplete_ZG.Data
 
         public static List<string> ReadCSVFileToStringList()
         {
-            string[] paths = { @Environment.CurrentDirectory, @"Data\world-cities_csv.csv" };
+            string[] paths = { @Environment.CurrentDirectory, Messages.DATA_FILE_WIN };
             string fullPath = Path.Combine(paths);
 
             StreamReader reader;
 
             if (!File.Exists(fullPath))
             {
-                string[] osxPaths = { @Environment.CurrentDirectory, @"Data/world-cities_csv.csv" };
+                string[] osxPaths = { @Environment.CurrentDirectory, Messages.DATA_FILE_OSX };
                 fullPath = Path.Combine(osxPaths);
             }
 
