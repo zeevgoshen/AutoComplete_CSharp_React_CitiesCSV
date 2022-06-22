@@ -12,7 +12,7 @@ namespace SailPoint_AutoComplete_ZG.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    public class SuggestionsController : ControllerBase
+    public class SuggestionsController : Controller
     {
         private readonly ILogger<SuggestionsController> _logger;
 
@@ -57,7 +57,7 @@ namespace SailPoint_AutoComplete_ZG.Controllers
                 CacheManager.Instance.SaveTrieOfFirstLetter(trie, searchString);
 
             }
-            else if (searchString.Length > 1 || trie == null)
+            else if (searchString.Length > 1)
             {
                 trie = CacheManager.Instance.RetrieveTrieOfFirstLetter(searchString);
             }
