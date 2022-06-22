@@ -24,7 +24,10 @@ export default function Home() {
         <div className="main_content">
 
             <label className="mainTitle">SailPoint Cities Autocomplete</label>
-            <label className="secondaryTitle">The search is not case sensitive.</label>
+            <label className="secondaryTitle">1. The search is not case sensitive.</label>
+            <label className="secondaryTitle">2. The search currently is done letter-by-letter. Using
+                de-bounce the search can be improved by setting it to start at small time intervals such as 500ms to reduce
+                API calls.</label>
             <AutoComplete />
         </div>
     );

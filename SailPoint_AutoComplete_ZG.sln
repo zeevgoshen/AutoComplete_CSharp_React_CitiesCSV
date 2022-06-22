@@ -5,6 +5,8 @@ VisualStudioVersion = 17.0.32014.148
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SailPoint_AutoComplete_ZG", "SailPoint_AutoComplete_ZG.csproj", "{84C701D8-2B7B-40EC-BC87-EDE277B13CFA}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SailPoint_AutoComplete_ZGTests", "..\SailPoint_AutoComplete_ZGTests\SailPoint_AutoComplete_ZGTests.csproj", "{B2050D84-48B7-4841-846A-C67AE6604D17}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{84C701D8-2B7B-40EC-BC87-EDE277B13CFA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{84C701D8-2B7B-40EC-BC87-EDE277B13CFA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{84C701D8-2B7B-40EC-BC87-EDE277B13CFA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B2050D84-48B7-4841-846A-C67AE6604D17}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B2050D84-48B7-4841-846A-C67AE6604D17}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B2050D84-48B7-4841-846A-C67AE6604D17}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B2050D84-48B7-4841-846A-C67AE6604D17}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
