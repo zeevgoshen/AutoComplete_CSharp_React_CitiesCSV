@@ -7,7 +7,7 @@ namespace SailPoint_AutoComplete_ZG.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    public class CitiesController : ControllerBase
+    public class CitiesController : Controller
     {
 
         private readonly ILogger<CitiesController> _logger;
