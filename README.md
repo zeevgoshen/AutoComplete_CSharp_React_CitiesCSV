@@ -1,6 +1,7 @@
 # AutoComplete_React_ASP.NET-CORE
 
-git clone the project
+git clone the project running:
+"git clone https://github.com/zeevgoshen/AutoComplete_React_ASP.NET-CORE.git"
 
 Running:
 
