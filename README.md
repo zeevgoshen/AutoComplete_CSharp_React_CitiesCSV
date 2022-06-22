@@ -18,7 +18,7 @@ in the ouput, search the line saying:
 
 <hr>
 
-Summary:
+Server summary:
 
 1. In this project I used the Trie data structure since it's the recommended data structure for an AutoComplete feature.
 (see comparison with other data structures:)
