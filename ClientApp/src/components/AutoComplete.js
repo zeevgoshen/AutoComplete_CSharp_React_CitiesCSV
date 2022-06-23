@@ -1,5 +1,7 @@
-﻿import React, { useMemo, useState } from 'react';
+﻿import React, { useMemo, useState, useEffect } from 'react';
 import axios from 'axios';
+import debounce from 'lodash.debounce';
+
 import './AutoComplete.css'
 
 const AutoComplete = () => {
@@ -31,6 +33,21 @@ const AutoComplete = () => {
     }, [filterText]);
 
 
+    const handleChange = (e) => {
+        setInputValue();
+        setFilter(e.target.value);
+    };
+
+    const debouncedResults = useMemo(() => {
+        return debounce(handleChange, 300);
+    }, []);
+
+    useEffect(() => {
+        return () => {
+            debouncedResults.cancel();
+        };
+    });
+
 
     const selectText = (text) => {
         if (text.length === 0) {
@@ -46,10 +63,7 @@ const AutoComplete = () => {
             <label className="suggestionLabels">Start typing a city name...</label>
             <div className="selectedValue">{filterText.length > 0 ? inputValue : ' '}</div>
 
-            <input className="autoCompleteInput" type="text" onChange={(e) => {
-                setInputValue();
-                setFilter(e.target.value);
-            }} />
+            <input className="autoCompleteInput" type="text" onChange={debouncedResults} />
         </div>
         <ul>
             {filterText.length > 0 && cities && cities.map((city) => <li key={city.id} onClick={(e) => selectText(city.cityName)}>{city.cityName}</li>)}

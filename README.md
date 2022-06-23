@@ -25,15 +25,15 @@ Server summary:
 (see comparison with other data structures:)
 https://visualstudiomagazine.com/Articles/2015/10/20/Text-Pattern-Search-Trie-Class-NET.aspx?Page=1
 
+It is not my Trie implementation and was used 99% "as-is", like a nuget package,
+since there is no Trie implementation that is a part of Dot Net.
+
 2. I used Caching to avoid expansive data fetching (in this case a CSV file, could be DB or others)
 
 3. The Cache Manager is a double-check Singleton to provide thread-safety.
 https://riptutorial.com/csharp/example/3864/lazy--thread-safe-singleton--using-double-checked-locking-
 
-4. Trie usage can be optimized, currently it searches letter-by-letter, to use debounce in the client
-the sever needs to be changed to accept longer strings.
-
-5. The controller is not using Tasks yet.
+4. The controller is not using Tasks yet.
 
 
 
@@ -41,7 +41,8 @@ Client summary:
 
 1. Cypress is used for testing the client, launch test runner command - "npx cypress open" 
 
-2. De-bounce should be considered as a way to reduce api calls.
+2. De-bounce is used to reduce api calls.
 
-3. Other client side caching strategies rather than useState can be considered.
+3. Other client side caching strategies can be considered.
 
+***** Most testing was done manually/unit testing and debugging.
