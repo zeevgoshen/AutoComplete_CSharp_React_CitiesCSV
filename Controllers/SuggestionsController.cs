@@ -40,25 +40,13 @@ namespace SailPoint_AutoComplete_ZG.Controllers
             trie = CacheManager.Instance.RetrieveTrie();
             
             if (trie == null) {
-                trie = new Trie();
-
-                int j = 0;
-                foreach (string city in allCitiesStrings)
-                {
-                    if (city != null)
-                    {
-                        trie.Insert(city.ToLowerInvariant(), j);
-                        j++;
-                    }
-                }
-
-                // Save trie in cache
-                CacheManager.Instance.SaveTrie(trie);
-
+                trie = Utils.CreateTrieAndSaveInCache(allCitiesStrings);
             }
 
             return SendResultsList(searchString, trie, allCitiesStrings);
         }
+
+        
 
         public static List<CitiesModel> SendResultsList(string prefix, Trie trie, List<string> allCitiesStrings)
         {
