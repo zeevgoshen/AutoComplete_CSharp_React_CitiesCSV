@@ -50,12 +50,7 @@ const AutoComplete = () => {
 
 
     const selectText = (text) => {
-        if (text.length === 0) {
-            console.log('text');
-            setInputValue(' ');
-        } else {
-            setInputValue(text);
-        }
+        setInputValue(text);
     }
 
     return <div className="suggestionList">
