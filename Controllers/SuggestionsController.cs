@@ -31,16 +31,15 @@ namespace SailPoint_AutoComplete_ZG.Controllers
             string searchString = dict["text"].ToString();
             searchString = searchString.ToLowerInvariant();
 
-            // **************************************************************
-            // when the app first loads, the full list is saved in the cache.
-            // so there is no searchString.Length == 0 case.
-            //
-            // first letter (prefix) has already been entered
-            // **************************************************************
+            // ************************************************************************
+            // When the app first loads (Home.js), the full list is saved in the cache.
+            // ************************************************************************
 
             allCitiesStrings = CacheManager.Instance.GetAllCitiesStringList();
-            if (searchString.Length == 1 && trie == null)
-            {
+
+            trie = CacheManager.Instance.RetrieveTrie();
+            
+            if (trie == null) {
                 trie = new Trie();
 
                 int j = 0;
@@ -53,17 +52,12 @@ namespace SailPoint_AutoComplete_ZG.Controllers
                     }
                 }
 
-                // Save trie of first letter in cache
-                CacheManager.Instance.SaveTrieOfFirstLetter(trie, searchString);
+                // Save trie in cache
+                CacheManager.Instance.SaveTrie(trie);
 
-            }
-            else if (searchString.Length > 1)
-            {
-                trie = CacheManager.Instance.RetrieveTrieOfFirstLetter(searchString);
             }
 
             return SendResultsList(searchString, trie, allCitiesStrings);
-
         }
 
         public static List<CitiesModel> SendResultsList(string prefix, Trie trie, List<string> allCitiesStrings)

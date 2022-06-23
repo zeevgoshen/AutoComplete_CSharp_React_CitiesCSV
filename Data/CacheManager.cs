@@ -68,22 +68,28 @@ namespace SailPoint_AutoComplete_ZG.Data
             return allCities;
         }
 
-        public void SaveTrieOfFirstLetter(Trie trie, string searchString)
+        public void SaveTrie(Trie trie)
         {
-            cache.Set(searchString, trie, policy);
-            //MemoryCache.Default[searchString] = trie;
+            try
+            {
+                cache.Set("trie", trie, policy);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
         }
 
-        public Trie RetrieveTrieOfFirstLetter(string searchString)
+        public Trie RetrieveTrie()
         {
-            string key = string.Empty;
-
-            if (searchString != null)
+            try
             {
-                key = searchString.Substring(0, 1);
-                return cache[key] as Trie;
+                return cache["trie"] as Trie;
             }
-            return null;
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
         }
     }
 }
