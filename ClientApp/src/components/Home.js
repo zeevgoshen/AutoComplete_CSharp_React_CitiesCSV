@@ -28,6 +28,8 @@ export default function Home() {
             <label className="secondaryTitle">2. The search currently is using
                 de-bounce with a time interval of such as 150ms to reduce API calls.<br /> This can be tweaked for faster results.</label>
             <label className="secondaryTitle">3. See the github readme for more details.</label>
+            <label className="secondaryTitle">4. You can click the city in the list of cities to select it.</label>
+
             <AutoComplete />
         </div>
     );
