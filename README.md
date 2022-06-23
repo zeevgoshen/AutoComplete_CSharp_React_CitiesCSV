@@ -30,14 +30,18 @@ https://visualstudiomagazine.com/Articles/2015/10/20/Text-Pattern-Search-Trie-Cl
 3. The Cache Manager is a double-check Singleton to provide thread-safety.
 https://riptutorial.com/csharp/example/3864/lazy--thread-safe-singleton--using-double-checked-locking-
 
-4. Trie usage can be optimized.
+4. Trie usage can be optimized, currently it searches letter-by-letter, to use debounce in the client
+the sever needs to be changed to accept longer strings.
+
+5. The controller is not using Tasks yet.
 
 
 
 Client summary:
 
-1. Cypress is used for testing the client.
+1. Cypress is used for testing the client, launch test runner command - "npx cypress open" 
 
 2. De-bounce should be considered as a way to reduce api calls.
 
-3. Other client side caching strategies rather than useState can be considered. 
+3. Other client side caching strategies rather than useState can be considered.
+
