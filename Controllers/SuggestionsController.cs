@@ -27,26 +27,32 @@ namespace SailPoint_AutoComplete_ZG.Controllers
         {
             List<string> allCitiesStrings;
             Trie? trie = null;
-            var dict = JsonSerializer.Deserialize<Dictionary<string, string>>(text);
-            string searchString = dict["text"].ToString();
-            searchString = searchString.ToLowerInvariant();
 
-            // ************************************************************************
-            // When the app first loads (Home.js), the full list is saved in the cache.
-            // ************************************************************************
+            try
+            {
+                var     query = JsonSerializer.Deserialize<Dictionary<string, string>>(text);
+                string  searchString = query[Strings.QUERY_TEXT].ToString();
+                searchString = searchString.ToLowerInvariant();
 
-            allCitiesStrings = CacheManager.Instance.GetAllCitiesStringList();
+                // ************************************************************************
+                // When the app first loads (Home.js), the full list is saved in the cache.
+                // ************************************************************************
 
-            trie = CacheManager.Instance.RetrieveTrie();
+                allCitiesStrings = CacheManager.Instance.GetAllCitiesStringList();
+
+                trie = CacheManager.Instance.RetrieveTrie();
             
-            if (trie == null) {
-                trie = Utils.CreateTrieAndSaveInCache(allCitiesStrings);
+                if (trie == null) {
+                    trie = Utils.CreateTrieAndSaveInCache(allCitiesStrings);
+                }
+
+                return SendResultsList(searchString, trie, allCitiesStrings);
+            } 
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
             }
-
-            return SendResultsList(searchString, trie, allCitiesStrings);
         }
-
-        
 
         public static List<CitiesModel> SendResultsList(string prefix, Trie trie, List<string> allCitiesStrings)
         {
@@ -54,7 +60,8 @@ namespace SailPoint_AutoComplete_ZG.Controllers
 
             if (trie == null)
             {
-                return null;
+                //return null;
+                throw new Exception(Strings.NULL_TRIE);
             }
 
             List<int> indices = trie.Collect(prefix);

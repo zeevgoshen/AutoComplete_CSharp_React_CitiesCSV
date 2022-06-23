@@ -8,5 +8,7 @@
         public const string CACHE_KEY_TRIE = "trie";
         public const string CACHE_KEY_CITIES = "allCitiesStrings";
         public const string CACHE_KEY_CITIES_CONC = "allCities";
+        public const string QUERY_TEXT = "text";
+        public const string NULL_TRIE = "Null Trie found.";
     }
 }
