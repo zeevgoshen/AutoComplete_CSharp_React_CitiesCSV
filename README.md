@@ -49,6 +49,6 @@ Client summary:
 
 3. Other client side caching strategies can be considered.
 
-***** Most testing was done manually/unit testing and debugging.
+***** Most testing was done manually/unit testing and debugging, also with the e2e option of Cypress.
 
 
