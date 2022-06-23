@@ -14,11 +14,13 @@ cd into SailPoint_AutoComplete_ZG
 and run - <br><br><h2><b>"dotnet run"</b></h2><br><br>
 
 <h2>Please note the first time will take longer than the next runs since npm install is carried out in the background.</h2><br>
-<h2>Don't close the terminal/cmd window</h2>
+<h2>Don't close the terminal/cmd window !!!</h2>
 <br>
-in the ouput, search the line saying:
+Wait for the line in the ouput:
 
-"Now listening on: http://localhost:XXXX" and open this url in the browser.
+<h3>"Now listening on: http://localhost:XXXX"</h3>
+<br>
+and open this url in the browser.
 
 <hr>
 
