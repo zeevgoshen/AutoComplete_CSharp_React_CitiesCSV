@@ -12,6 +12,7 @@ namespace SailPoint_AutoComplete_ZG.Controllers
 
         private readonly ILogger<CitiesController> _logger;
 
+        // the logger is not used but is still here for future use
         public CitiesController(ILogger<CitiesController> logger)
         {
             _logger = logger;            

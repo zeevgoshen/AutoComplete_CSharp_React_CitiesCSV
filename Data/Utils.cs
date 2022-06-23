@@ -12,30 +12,45 @@ namespace SailPoint_AutoComplete_ZG.Data
             string[] paths = { @Environment.CurrentDirectory, Strings.DATA_FILE_WIN };
             string fullPath = Path.Combine(paths);
 
-            StreamReader reader;
+            StreamReader reader = null;
 
-            if (!File.Exists(fullPath))
-            {                
-                string[] osxPaths = { @Environment.CurrentDirectory, Strings.DATA_FILE_OSX };
-                fullPath = Path.Combine(osxPaths);
-            }
-
-            reader = new StreamReader(File.OpenRead(fullPath));
-            var citiesList = new ConcurrentBag<CitiesModel>();
-            string row;
-
-            CitiesModel city;
-            int i = 0;
-
-            while ((row = reader.ReadLine()) != null)
+            try
             {
-                city = new CitiesModel(row);
-                city.Id = i++;
-                citiesList.Add(city);
-            }
-            reader.Close();
 
-            return citiesList;
+                if (!File.Exists(fullPath))
+                {                
+                    string[] osxPaths = { @Environment.CurrentDirectory, Strings.DATA_FILE_OSX };
+                    fullPath = Path.Combine(osxPaths);
+                }
+
+                reader = new StreamReader(File.OpenRead(fullPath));
+                var citiesList = new ConcurrentBag<CitiesModel>();
+                string row;
+
+                CitiesModel city;
+                int i = 0;
+
+                while ((row = reader.ReadLine()) != null)
+                {
+                    city = new CitiesModel(row);
+                    city.Id = i++;
+                    citiesList.Add(city);
+                }
+                reader.Close();
+
+                return citiesList;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+            finally
+            {
+                if (reader != null)
+                {
+                    reader.Close();
+                }
+            }
         }
 
 
@@ -43,27 +58,41 @@ namespace SailPoint_AutoComplete_ZG.Data
         {
             string[] paths = { @Environment.CurrentDirectory, Strings.DATA_FILE_WIN };
             string fullPath = Path.Combine(paths);
+            StreamReader reader = null;
 
-            StreamReader reader;
-
-            if (!File.Exists(fullPath))
+            try
             {
-                string[] osxPaths = { @Environment.CurrentDirectory, Strings.DATA_FILE_OSX };
-                fullPath = Path.Combine(osxPaths);
+
+                if (!File.Exists(fullPath))
+                {
+                    string[] osxPaths = { @Environment.CurrentDirectory, Strings.DATA_FILE_OSX };
+                    fullPath = Path.Combine(osxPaths);
+                }
+
+                reader = new StreamReader(File.OpenRead(fullPath));
+
+                var citiesList = new List<string>();
+                string row;
+
+                while ((row = reader.ReadLine()) != null)
+                {
+                    citiesList.Add(row);
+                }
+                reader.Close();
+
+                return citiesList;
             }
-
-            reader = new StreamReader(File.OpenRead(fullPath));
-
-            var citiesList = new List<string>();
-            string row;
-
-            while ((row = reader.ReadLine()) != null)
+            catch (Exception ex)
             {
-                citiesList.Add(row);
+                throw new Exception(ex.Message);
             }
-            reader.Close();
-
-            return citiesList;
+            finally
+            {
+                if (reader != null)
+                {
+                    reader.Close();
+                }
+            }
         }
 
         public static Trie CreateTrieAndSaveInCache(List<string> allCitiesStrings)

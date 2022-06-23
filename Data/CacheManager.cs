@@ -61,12 +61,20 @@ namespace SailPoint_AutoComplete_ZG.Data
         {
             try
             {
-                List<string>? allCities = cache[Strings.CACHE_KEY_CITIES] as List<string>;
+                List<string>? allCities = new List<string>();
+
+                if (cache != null)
+                {
+                    allCities = cache[Strings.CACHE_KEY_CITIES] as List<string>;
+                }
 
                 if (allCities == null)
                 {
                     allCities = Utils.ReadCSVFileToStringList();
-                    cache.Set(Strings.CACHE_KEY_CITIES, allCities, policy);
+
+                    if (cache != null) { 
+                        cache.Set(Strings.CACHE_KEY_CITIES, allCities, policy);
+                    }
                 }
 
                 return allCities;
@@ -82,7 +90,10 @@ namespace SailPoint_AutoComplete_ZG.Data
         {
             try
             {
-                cache.Set(Strings.CACHE_KEY_TRIE, trie, policy);
+                if (cache != null)
+                {
+                    cache.Set(Strings.CACHE_KEY_TRIE, trie, policy);
+                }
             }
             catch (Exception ex)
             {
@@ -94,7 +105,14 @@ namespace SailPoint_AutoComplete_ZG.Data
         {
             try
             {
-                return cache["trie"] as Trie;
+                if (cache != null)
+                {
+                    return cache["trie"] as Trie;
+                }
+                else
+                {
+                    return new Trie();
+                }
             }
             catch (Exception ex)
             {

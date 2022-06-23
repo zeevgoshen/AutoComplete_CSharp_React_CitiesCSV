@@ -16,6 +16,7 @@ namespace SailPoint_AutoComplete_ZG.Controllers
     {
         private readonly ILogger<SuggestionsController> _logger;
 
+        // the logger is not used but is still here for future use
         public SuggestionsController(ILogger<SuggestionsController> logger)
         {
             _logger = logger;
@@ -30,23 +31,32 @@ namespace SailPoint_AutoComplete_ZG.Controllers
 
             try
             {
-                var     query = JsonSerializer.Deserialize<Dictionary<string, string>>(text);
-                string  searchString = query[Strings.QUERY_TEXT].ToString();
-                searchString = searchString.ToLowerInvariant();
+                var query = JsonSerializer.Deserialize<Dictionary<string, string>>(text);
 
-                // ************************************************************************
-                // When the app first loads (Home.js), the full list is saved in the cache.
-                // ************************************************************************
+                if (query != null)
+                {
+                    string searchString = query[Strings.QUERY_TEXT].ToString();
+                    searchString = searchString.ToLowerInvariant();
 
-                allCitiesStrings = CacheManager.Instance.GetAllCitiesStringList();
+                    // ************************************************************************
+                    // When the app first loads (Home.js), the full list is saved in the cache.
+                    // ************************************************************************
 
-                trie = CacheManager.Instance.RetrieveTrie();
-            
-                if (trie == null) {
-                    trie = Utils.CreateTrieAndSaveInCache(allCitiesStrings);
+                    allCitiesStrings = CacheManager.Instance.GetAllCitiesStringList();
+
+                    trie = CacheManager.Instance.RetrieveTrie();
+
+                    if (trie == null)
+                    {
+                        trie = Utils.CreateTrieAndSaveInCache(allCitiesStrings);
+                    }
+
+                    return SendResultsList(searchString, trie, allCitiesStrings);
                 }
-
-                return SendResultsList(searchString, trie, allCitiesStrings);
+                else
+                {
+                    throw new Exception(Strings.NULL_SEARCH_QUERY);
+                }
             } 
             catch (Exception ex)
             {
@@ -56,33 +66,40 @@ namespace SailPoint_AutoComplete_ZG.Controllers
 
         public static List<CitiesModel> SendResultsList(string prefix, Trie trie, List<string> allCitiesStrings)
         {
-            List<CitiesModel> result = new List<CitiesModel>();
-
-            if (trie == null)
+            try
             {
-                //return null;
-                throw new Exception(Strings.NULL_TRIE);
-            }
+                List<CitiesModel> result = new List<CitiesModel>();
 
-            List<int> indices = trie.Collect(prefix);
-
-            CitiesModel city;
-            if (indices.Count > 0)
-            {
-                foreach (int i in indices)
+                if (trie == null)
                 {
-                    city = new CitiesModel(allCitiesStrings[i]);
-                    city.Id = i;
+                    //return null;
+                    throw new Exception(Strings.NULL_TRIE);
+                }
+
+                List<int> indices = trie.Collect(prefix);
+
+                CitiesModel city;
+                if (indices.Count > 0)
+                {
+                    foreach (int i in indices)
+                    {
+                        city = new CitiesModel(allCitiesStrings[i]);
+                        city.Id = i;
+                        result.Add(city);
+                    }
+                }
+                else
+                {
+                    city = new CitiesModel(Strings.NO_CITY_FOUND);
+                    city.Id = 0;
                     result.Add(city);
                 }
-            }
-            else
+                return result;
+            } 
+            catch (Exception ex)
             {
-                city = new CitiesModel(Strings.NO_CITY_FOUND);
-                city.Id = 0;
-                result.Add(city);
+                throw new Exception(ex.Message);
             }
-            return result;
         }
     }
 }

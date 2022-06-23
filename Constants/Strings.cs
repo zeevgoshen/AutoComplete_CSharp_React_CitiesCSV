@@ -10,5 +10,7 @@
         public const string CACHE_KEY_CITIES_CONC = "allCities";
         public const string QUERY_TEXT = "text";
         public const string NULL_TRIE = "Null Trie found.";
+        public const string NULL_SEARCH_QUERY = "No city to search";
+
     }
 }
