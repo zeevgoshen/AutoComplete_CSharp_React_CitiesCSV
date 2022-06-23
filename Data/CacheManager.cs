@@ -10,8 +10,8 @@ namespace SailPoint_AutoComplete_ZG.Data
     {
         private static object syncRoot = new Object();
         private static CacheManager? instance;
-        ObjectCache cache = null;
-        CacheItemPolicy policy = null;
+        ObjectCache? cache = null;
+        CacheItemPolicy? policy = null;
 
         private CacheManager()
         {
@@ -41,6 +41,7 @@ namespace SailPoint_AutoComplete_ZG.Data
             }
         }
 
+        // currently unused
         public ConcurrentBag<CitiesModel> GetAllCities()
         {
             ConcurrentBag<CitiesModel>? allCities = MemoryCache.Default[Strings.CACHE_KEY_CITIES_CONC] as ConcurrentBag<CitiesModel>;
@@ -58,15 +59,23 @@ namespace SailPoint_AutoComplete_ZG.Data
         // before any searches are done.
         public List<string> GetAllCitiesStringList()
         {
-            List<string>? allCities = cache[Strings.CACHE_KEY_CITIES] as List<string>;
-
-            if (allCities == null)
+            try
             {
-                allCities = Utils.ReadCSVFileToStringList();
-                cache.Set(Strings.CACHE_KEY_CITIES, allCities, policy);
-            }
+                List<string>? allCities = cache[Strings.CACHE_KEY_CITIES] as List<string>;
 
-            return allCities;
+                if (allCities == null)
+                {
+                    allCities = Utils.ReadCSVFileToStringList();
+                    cache.Set(Strings.CACHE_KEY_CITIES, allCities, policy);
+                }
+
+                return allCities;
+
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
         }
 
         public void SaveTrie(Trie trie)
@@ -81,7 +90,7 @@ namespace SailPoint_AutoComplete_ZG.Data
             }
         }
 
-        public Trie RetrieveTrie()
+        public Trie? RetrieveTrie()
         {
             try
             {

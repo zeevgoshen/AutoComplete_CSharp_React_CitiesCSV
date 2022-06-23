@@ -45,6 +45,7 @@ Client summary:
 	(Home.cy.tsx is a Cypress component testing file. e2e Cypress testing files are outside the ClientApp)
 
 2. De-bounce is used to reduce api calls.
+	https://lodash.com/docs/4.17.15
 
 3. Other client side caching strategies can be considered.
 

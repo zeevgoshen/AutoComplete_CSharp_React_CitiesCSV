@@ -39,7 +39,7 @@ const AutoComplete = () => {
     };
 
     const debouncedResults = useMemo(() => {
-        return debounce(handleChange, 300);
+        return debounce(handleChange, 150);
     }, []);
 
     useEffect(() => {

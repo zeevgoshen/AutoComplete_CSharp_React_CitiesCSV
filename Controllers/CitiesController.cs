@@ -20,7 +20,14 @@ namespace SailPoint_AutoComplete_ZG.Controllers
         [HttpGet]
         public List<string> Get()
         {
-            return CacheManager.Instance.GetAllCitiesStringList();
+            try
+            {
+                return CacheManager.Instance.GetAllCitiesStringList();
+            } 
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
 
         }
     }

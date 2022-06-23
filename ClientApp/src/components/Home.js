@@ -26,7 +26,7 @@ export default function Home() {
             <label className="mainTitle">SailPoint Cities Autocomplete</label>
             <label className="secondaryTitle">1. The search is not case sensitive.</label>
             <label className="secondaryTitle">2. The search currently is using
-                de-bounce with a time interval of such as 300ms to reduce API calls.</label>
+                de-bounce with a time interval of such as 150ms to reduce API calls. This can be tweaked for faster results.</label>
             <label className="secondaryTitle">3. See the github readme for more details.</label>
             <AutoComplete />
         </div>
