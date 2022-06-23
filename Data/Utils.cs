@@ -97,21 +97,28 @@ namespace SailPoint_AutoComplete_ZG.Data
 
         public static Trie CreateTrieAndSaveInCache(List<string> allCitiesStrings)
         {
-            Trie trie = new Trie();
-
-            int j = 0;
-            foreach (string city in allCitiesStrings)
+            try
             {
-                if (city != null)
-                {
-                    trie.Insert(city.ToLowerInvariant(), j);
-                    j++;
-                }
-            }
+                Trie trie = new Trie();
 
-            // Save trie in cache
-            CacheManager.Instance.SaveTrie(trie);
-            return trie;
+                int j = 0;
+                foreach (string city in allCitiesStrings)
+                {
+                    if (city != null)
+                    {
+                        trie.Insert(city.ToLowerInvariant(), j);
+                        j++;
+                    }
+                }
+
+                // Save trie in cache
+                CacheManager.Instance.SaveTrie(trie);
+                return trie;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
         }
     }
 }
