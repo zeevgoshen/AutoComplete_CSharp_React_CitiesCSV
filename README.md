@@ -36,16 +36,18 @@ since there is no Trie implementation that is a part of Dot Net.
 3. The Cache Manager is a double-check Singleton to provide thread-safety.
 https://riptutorial.com/csharp/example/3864/lazy--thread-safe-singleton--using-double-checked-locking-
 
-4. The controller is not using Tasks yet.
 
 
 
 Client summary:
 
 1. Cypress is used for testing the client, launch test runner command - "npx cypress open" 
+	(Home.cy.tsx is a Cypress component testing file. e2e Cypress testing files are outside the ClientApp)
 
 2. De-bounce is used to reduce api calls.
 
 3. Other client side caching strategies can be considered.
 
 ***** Most testing was done manually/unit testing and debugging.
+
+
