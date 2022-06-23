@@ -1,4 +1,5 @@
-﻿using SailPoint_AutoComplete_ZG.Logic.Models;
+﻿using SailPoint_AutoComplete_ZG.Constants;
+using SailPoint_AutoComplete_ZG.Logic.Models;
 using System.Collections.Concurrent;
 using System.Runtime.Caching;
 using TriesLib;
@@ -42,12 +43,12 @@ namespace SailPoint_AutoComplete_ZG.Data
 
         public ConcurrentBag<CitiesModel> GetAllCities()
         {
-            ConcurrentBag<CitiesModel>? allCities = MemoryCache.Default["allCities"] as ConcurrentBag<CitiesModel>;
+            ConcurrentBag<CitiesModel>? allCities = MemoryCache.Default[Strings.CACHE_KEY_CITIES_CONC] as ConcurrentBag<CitiesModel>;
 
             if (allCities == null)
             {
                 allCities = Utils.ReadCSVFile();
-                MemoryCache.Default["allCities"] = allCities;
+                MemoryCache.Default[Strings.CACHE_KEY_CITIES_CONC] = allCities;
             }
 
             return allCities;
@@ -57,12 +58,12 @@ namespace SailPoint_AutoComplete_ZG.Data
         // before any searches are done.
         public List<string> GetAllCitiesStringList()
         {
-            List<string>? allCities = cache["allCitiesStrings"] as List<string>;
+            List<string>? allCities = cache[Strings.CACHE_KEY_CITIES] as List<string>;
 
             if (allCities == null)
             {
                 allCities = Utils.ReadCSVFileToStringList();
-                cache.Set("allCitiesStrings", allCities, policy);
+                cache.Set(Strings.CACHE_KEY_CITIES, allCities, policy);
             }
 
             return allCities;
@@ -72,7 +73,7 @@ namespace SailPoint_AutoComplete_ZG.Data
         {
             try
             {
-                cache.Set("trie", trie, policy);
+                cache.Set(Strings.CACHE_KEY_TRIE, trie, policy);
             }
             catch (Exception ex)
             {

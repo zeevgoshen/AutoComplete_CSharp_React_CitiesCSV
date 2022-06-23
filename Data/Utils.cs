@@ -9,14 +9,14 @@ namespace SailPoint_AutoComplete_ZG.Data
     {
         public static ConcurrentBag<CitiesModel> ReadCSVFile()
         {
-            string[] paths = { @Environment.CurrentDirectory, Messages.DATA_FILE_WIN };
+            string[] paths = { @Environment.CurrentDirectory, Strings.DATA_FILE_WIN };
             string fullPath = Path.Combine(paths);
 
             StreamReader reader;
 
             if (!File.Exists(fullPath))
             {                
-                string[] osxPaths = { @Environment.CurrentDirectory, Messages.DATA_FILE_OSX };
+                string[] osxPaths = { @Environment.CurrentDirectory, Strings.DATA_FILE_OSX };
                 fullPath = Path.Combine(osxPaths);
             }
 
@@ -41,14 +41,14 @@ namespace SailPoint_AutoComplete_ZG.Data
 
         public static List<string> ReadCSVFileToStringList()
         {
-            string[] paths = { @Environment.CurrentDirectory, Messages.DATA_FILE_WIN };
+            string[] paths = { @Environment.CurrentDirectory, Strings.DATA_FILE_WIN };
             string fullPath = Path.Combine(paths);
 
             StreamReader reader;
 
             if (!File.Exists(fullPath))
             {
-                string[] osxPaths = { @Environment.CurrentDirectory, Messages.DATA_FILE_OSX };
+                string[] osxPaths = { @Environment.CurrentDirectory, Strings.DATA_FILE_OSX };
                 fullPath = Path.Combine(osxPaths);
             }
 

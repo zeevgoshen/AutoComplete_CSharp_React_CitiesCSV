@@ -71,7 +71,7 @@ namespace SailPoint_AutoComplete_ZG.Controllers
             }
             else
             {
-                city = new CitiesModel(Messages.NO_CITY_FOUND);
+                city = new CitiesModel(Strings.NO_CITY_FOUND);
                 city.Id = 0;
                 result.Add(city);
             }
