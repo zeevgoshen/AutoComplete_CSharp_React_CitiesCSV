@@ -38,6 +38,7 @@ since there is no Trie implementation that is a part of Dot Net.
 3. The Cache Manager is a double-check Singleton to provide thread-safety.
 https://riptutorial.com/csharp/example/3864/lazy--thread-safe-singleton--using-double-checked-locking-
 
+4. Currently when changing the Get Cities controller to ASYNC TASK causes a client error so the code is checked-in without it.
 
 
 
