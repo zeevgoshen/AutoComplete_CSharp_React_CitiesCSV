@@ -42,7 +42,8 @@ https://riptutorial.com/csharp/example/3864/lazy--thread-safe-singleton--using-d
 
 4. Currently when changing the Get Cities controller to ASYNC TASK causes a client error so the code is checked-in without it.
 
-
+<br>
+<br>
 
 Client summary:
 
