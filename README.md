@@ -24,6 +24,8 @@ and open this url in the browser.
 
 <hr>
 
+
+
 Server summary:
 
 1. In this project I used the Trie data structure since it's the recommended data structure for an AutoComplete feature.
