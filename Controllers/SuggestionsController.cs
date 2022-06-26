@@ -24,7 +24,7 @@ namespace SailPoint_AutoComplete_ZG.Controllers
 
 
         [HttpPost]
-        public async Task<List<CitiesModel>> Post([FromBody] JsonElement text)
+        public IEnumerable<CitiesModel> Post([FromBody] JsonElement text)
         {
             List<string> allCitiesStrings;
             Trie? trie = null;
@@ -42,7 +42,7 @@ namespace SailPoint_AutoComplete_ZG.Controllers
                     // When the app first loads (Home.js), the full list is saved in the cache.
                     // ************************************************************************
 
-                    allCitiesStrings = await CacheManager.Instance.GetAllCitiesStringList();
+                    allCitiesStrings = CacheManager.Instance.GetAllCitiesStringList();
 
                     trie = CacheManager.Instance.RetrieveTrie();
 

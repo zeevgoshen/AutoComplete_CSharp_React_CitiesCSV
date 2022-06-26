@@ -57,7 +57,7 @@ namespace SailPoint_AutoComplete_ZG.Data
 
         // This is used when the "home page" first loads.
         // before any searches are done.
-        public async Task <List<string>> GetAllCitiesStringList()
+        public List<string> GetAllCitiesStringList()
         {
             try
             {
@@ -70,7 +70,7 @@ namespace SailPoint_AutoComplete_ZG.Data
 
                 if (allCities == null)
                 {
-                    allCities = await Utils.ReadCSVFileToStringList();
+                    allCities = Utils.ReadCSVFileToStringList();
 
                     if (cache != null) { 
                         cache.Set(Strings.CACHE_KEY_CITIES, allCities, policy);
