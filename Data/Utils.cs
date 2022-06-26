@@ -54,7 +54,7 @@ namespace SailPoint_AutoComplete_ZG.Data
         }
 
 
-        public static List<string> ReadCSVFileToStringList()
+        public async static Task<List<string>> ReadCSVFileToStringList()
         {
             string[] paths = { @Environment.CurrentDirectory, Strings.DATA_FILE_WIN };
             string fullPath = Path.Combine(paths);

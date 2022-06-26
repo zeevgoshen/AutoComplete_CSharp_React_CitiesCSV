@@ -19,11 +19,11 @@ namespace SailPoint_AutoComplete_ZG.Controllers
         }
 
         [HttpGet]
-        public List<string> Get()
+        public async static Task<List<string>> Get()
         {
             try
             {
-                return CacheManager.Instance.GetAllCitiesStringList();
+                return await CacheManager.Instance.GetAllCitiesStringList();
             } 
             catch (Exception ex)
             {
