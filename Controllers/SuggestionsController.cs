@@ -38,6 +38,10 @@ namespace SailPoint_AutoComplete_ZG.Controllers
                     string searchString = query[Strings.QUERY_TEXT].ToString();
                     searchString = searchString.ToLowerInvariant();
 
+                    if (searchString.Length == 0)
+                    {
+                        return null;
+                    }
                     allCitiesStrings = await CacheManager.Instance.GetAllCitiesStringList();
 
                     trie = CacheManager.Instance.RetrieveTrie();
