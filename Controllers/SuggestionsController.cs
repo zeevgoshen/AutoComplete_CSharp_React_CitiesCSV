@@ -33,7 +33,7 @@ namespace SailPoint_AutoComplete_ZG.Controllers
             {
                 var query = JsonSerializer.Deserialize<Dictionary<string, string>>(text);
 
-                if (query != null)
+                if (query != null && query.Count > 0)
                 {
                     string searchString = query[Strings.QUERY_TEXT].ToString();
                     searchString = searchString.ToLowerInvariant();
@@ -55,7 +55,9 @@ namespace SailPoint_AutoComplete_ZG.Controllers
                 }
                 else
                 {
-                    throw new Exception(Strings.NULL_SEARCH_QUERY);
+                    // we can throw an exception or just return null since it's not a real exception.;
+                    // throw new Exception(Strings.NULL_SEARCH_QUERY);
+                    return null;
                 }
             } 
             catch (Exception ex)

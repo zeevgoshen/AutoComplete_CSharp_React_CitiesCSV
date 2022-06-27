@@ -20,11 +20,10 @@ export function useSuggestions(filterText) {
 
     useEffect(() => {
          
-
-        getFilteredCities(filterText).then((response) => {
+        getFilteredCities().then((response) => {
             setCities(response.data);
         }).catch((e) => {
-            console.log(e.message);
+            //console.log(e.message);
         });
     }, [filterText]);
 
