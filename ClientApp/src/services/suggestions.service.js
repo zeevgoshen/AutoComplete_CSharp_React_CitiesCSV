@@ -1,35 +1,31 @@
 ﻿import { useState, useEffect } from "react";
-import axios from 'axios'
+import axios from "axios";
 
 export function useSuggestions(filterText) {
+  const [cities, setCities] = useState([]);
 
-
-    const [cities, setCities] = useState([]);
-
-    const getFilteredCities = async () => {
-
-        const options = {
-            headers: { "content-type": "application/json" }
-        }
-
-        if (filterText) {
-            await axios
-                .post('suggestions', { "text": filterText }, options)
-                .then((response) => setCities(response.data))
-                .catch((err) => console.log(err));
-        }
+  const getFilteredCities = async () => {
+    const options = {
+      headers: { "content-type": "application/json" },
     };
 
-    useEffect(() => {
-         
-        getFilteredCities().then((response) => {
-            setCities(response.data);
-        }).catch((e) => {
-            //console.log(e.message);
-        });
-    }, [filterText]);
+    if (filterText) {
+      await axios
+        .post("suggestions", { text: filterText }, options)
+        .then((response) => setCities(response.data))
+        .catch((err) => console.log(err));
+    }
+  };
 
-    return [cities, setCities];
-};
+  useEffect(() => {
+    getFilteredCities()
+      .then((response) => {
+        setCities(response.data);
+      })
+      .catch((e) => {
+        //console.log(e.message);
+      });
+  }, [filterText]);
 
-
+  return [cities, setCities];
+}
