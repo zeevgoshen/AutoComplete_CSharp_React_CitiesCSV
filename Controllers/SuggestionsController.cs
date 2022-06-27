@@ -38,10 +38,6 @@ namespace SailPoint_AutoComplete_ZG.Controllers
                     string searchString = query[Strings.QUERY_TEXT].ToString();
                     searchString = searchString.ToLowerInvariant();
 
-                    // ************************************************************************
-                    // When the app first loads (Home.js), the full list is saved in the cache.
-                    // ************************************************************************
-
                     allCitiesStrings = await CacheManager.Instance.GetAllCitiesStringList();
 
                     trie = CacheManager.Instance.RetrieveTrie();
