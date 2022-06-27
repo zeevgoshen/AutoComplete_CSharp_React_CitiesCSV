@@ -22,17 +22,13 @@ export function useSuggestions(filterText) {
          
 
         getFilteredCities(filterText).then((response) => {
-            console.log('loaded cities');
-            setCities(response.data.issues);
-            
-             
+            setCities(response.data);
         }).catch((e) => {
             console.log(e.message);
-             
         });
     }, [filterText]);
 
-    return [cities, setCities, getFilteredCities];
+    return [cities, setCities];
 };
 
 
