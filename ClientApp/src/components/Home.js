@@ -1,7 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import AutoComplete from './AutoComplete'
 import './AutoComplete.css'
-import axios from "axios";
 
 export default function Home() {
 
