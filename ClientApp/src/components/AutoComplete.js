@@ -12,7 +12,9 @@ const AutoComplete = () => {
 
     const handleChange = (e) => {
         setInputValue();
-        setFilter(e.target.value);
+        if (e.target.value) {
+            setFilter(e.target.value.replace(/[^a-z]/gi, ''));
+        }
     };
 
     const debouncedResults = useMemo(() => {
