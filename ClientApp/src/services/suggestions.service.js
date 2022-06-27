@@ -12,10 +12,12 @@ export function useSuggestions(filterText) {
             headers: { "content-type": "application/json" }
         }
 
-        await axios
-            .post('suggestions', { "text": filterText }, options)
-            .then((response) => setCities(response.data))
-            .catch((err) => console.log(err));
+        if (filterText) {
+            await axios
+                .post('suggestions', { "text": filterText }, options)
+                .then((response) => setCities(response.data))
+                .catch((err) => console.log(err));
+        }
     };
 
     useEffect(() => {
