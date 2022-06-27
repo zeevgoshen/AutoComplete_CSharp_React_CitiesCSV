@@ -3,7 +3,6 @@ using Microsoft.AspNetCore.Mvc;
 using SailPoint_AutoComplete_ZG.Constants;
 using SailPoint_AutoComplete_ZG.Data;
 using SailPoint_AutoComplete_ZG.Logic.Models;
-using System.Collections.Concurrent;
 using System.Text.Json;
 using TriesLib;
 
@@ -38,10 +37,12 @@ namespace SailPoint_AutoComplete_ZG.Controllers
                     string searchString = query[Strings.QUERY_TEXT].ToString();
                     searchString = searchString.ToLowerInvariant();
 
-                    if (searchString.Length == 0)
+                    // server side validations
+                    if (searchString.Length == 0 || (!Utils.IsValidSearchText(searchString)))
                     {
-                        return null;
+                        throw new Exception(Strings.VALIDATION_ERR_MESSAGE);
                     }
+
                     allCitiesStrings = await CacheManager.Instance.GetAllCitiesStringList();
 
                     trie = CacheManager.Instance.RetrieveTrie();
@@ -55,9 +56,7 @@ namespace SailPoint_AutoComplete_ZG.Controllers
                 }
                 else
                 {
-                    // we can throw an exception or just return null since it's not a real exception.;
-                    // throw new Exception(Strings.NULL_SEARCH_QUERY);
-                    return null;
+                    throw new Exception(Strings.NO_SEARCH_PERFORMED);
                 }
             } 
             catch (Exception ex)

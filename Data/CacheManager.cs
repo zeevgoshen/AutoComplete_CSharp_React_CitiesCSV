@@ -41,20 +41,6 @@ namespace SailPoint_AutoComplete_ZG.Data
             }
         }
 
-        // currently unused
-        public ConcurrentBag<CitiesModel> GetAllCities()
-        {
-            ConcurrentBag<CitiesModel>? allCities = MemoryCache.Default[Strings.CACHE_KEY_CITIES_CONC] as ConcurrentBag<CitiesModel>;
-
-            if (allCities == null)
-            {
-                allCities = Utils.ReadCSVFile();
-                MemoryCache.Default[Strings.CACHE_KEY_CITIES_CONC] = allCities;
-            }
-
-            return allCities;
-        }
-
         // This is used when the "home page" first loads.
         // before any searches are done.
         public async Task<List<string>> GetAllCitiesStringList()

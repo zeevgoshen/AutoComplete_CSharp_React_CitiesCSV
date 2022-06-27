@@ -11,6 +11,8 @@
         public const string QUERY_TEXT = "text";
         public const string NULL_TRIE = "Null Trie found.";
         public const string NULL_SEARCH_QUERY = "No city to search";
+        public const string VALIDATION_ERR_MESSAGE = "You must search a valid city.";
+        public const string NO_SEARCH_PERFORMED = "No search was made.";
 
     }
 }

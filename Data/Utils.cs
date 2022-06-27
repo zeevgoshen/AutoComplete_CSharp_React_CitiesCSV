@@ -1,59 +1,29 @@
 ﻿using SailPoint_AutoComplete_ZG.Constants;
 using SailPoint_AutoComplete_ZG.Logic.Models;
 using System.Collections.Concurrent;
+using System.Text.RegularExpressions;
 using TriesLib;
 
 namespace SailPoint_AutoComplete_ZG.Data
 {
     public static class Utils
     {
-        public static ConcurrentBag<CitiesModel> ReadCSVFile()
-        {
-            string[] paths = { @Environment.CurrentDirectory, Strings.DATA_FILE_WIN };
-            string fullPath = Path.Combine(paths);
-
-            StreamReader reader = null;
-
-            try
-            {
-
-                if (!File.Exists(fullPath))
-                {
-                    string[] osxPaths = { @Environment.CurrentDirectory, Strings.DATA_FILE_OSX };
-                    fullPath = Path.Combine(osxPaths);
-                }
-
-                reader = new StreamReader(File.OpenRead(fullPath));
-                var citiesList = new ConcurrentBag<CitiesModel>();
-                string row;
-
-                CitiesModel city;
-                int i = 0;
-
-                while ((row = reader.ReadLine()) != null)
-                {
-                    city = new CitiesModel(row);
-                    city.Id = i++;
-                    citiesList.Add(city);
-                }
-                reader.Close();
-
-                return citiesList;
-            }
-            catch (Exception ex)
-            {
-                throw new Exception(ex.Message);
-            }
-            finally
-            {
-                if (reader != null)
-                {
-                    reader.Close();
-                }
-            }
+        /// <summary>
+        /// Server side validations
+        /// </summary>
+        /// <param name="text"></param>
+        /// <returns></returns>
+        public static bool IsValidSearchText(string text)
+        {   
+            Regex regex = new Regex(@"^[a-z -']");
+            return regex.Match(text).Success;
         }
-
-
+        
+        /// <summary>
+        /// Reads the csv file
+        /// </summary>
+        /// <returns></returns>
+        /// <exception cref="Exception"></exception>
         public async static Task<List<string>> ReadCSVFileToStringList()
         {
             string[] paths = { @Environment.CurrentDirectory, Strings.DATA_FILE_WIN };
@@ -97,6 +67,12 @@ namespace SailPoint_AutoComplete_ZG.Data
             }
         }
 
+        /// <summary>
+        /// Creates a pre-fix trie and stores it in cache
+        /// </summary>
+        /// <param name="allCitiesStrings"></param>
+        /// <returns></returns>
+        /// <exception cref="Exception"></exception>
         public static Trie CreateTrieAndSaveInCache(List<string> allCitiesStrings)
         {
             try
