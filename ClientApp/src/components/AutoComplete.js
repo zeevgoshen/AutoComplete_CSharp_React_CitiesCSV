@@ -14,6 +14,8 @@ const AutoComplete = () => {
         setInputValue();
         if (e.target.value) {
             setFilter(e.target.value.replace(/[^a-z]/gi, ''));
+        } else {
+            setFilter('');
         }
     };
 
@@ -35,7 +37,7 @@ const AutoComplete = () => {
     return <div className="suggestionList">
         <div className="suggestionLabels">
             <label className="suggestionLabels">Start typing a city name...</label>
-            <div className="selectedValue">{filterText.length > 0 ? inputValue : ' '}</div>
+            <div className="selectedValue">{filterText && filterText.length > 0 ? inputValue : ' '}</div>
 
             <input className="autoCompleteInput" type="text" onChange={debouncedResults} />
         </div>
