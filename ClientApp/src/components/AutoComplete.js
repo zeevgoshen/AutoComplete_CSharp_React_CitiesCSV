@@ -12,7 +12,7 @@ const AutoComplete = () => {
   const handleChange = (e) => {
     setInputValue();
     if (e.target.value) {
-      setFilter(e.target.value.replace(/[^a-z]/gi, ""));
+      setFilter(e.target.value.replace(/[^a-z -]/gi, ""));
     } else {
       setFilter("");
     }
