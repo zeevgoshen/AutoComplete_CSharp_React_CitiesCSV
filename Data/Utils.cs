@@ -18,7 +18,7 @@ namespace SailPoint_AutoComplete_ZG.Data
             {
 
                 if (!File.Exists(fullPath))
-                {                
+                {
                     string[] osxPaths = { @Environment.CurrentDirectory, Strings.DATA_FILE_OSX };
                     fullPath = Path.Combine(osxPaths);
                 }
@@ -54,7 +54,7 @@ namespace SailPoint_AutoComplete_ZG.Data
         }
 
 
-        public static List<string> ReadCSVFileToStringList()
+        public async static Task<List<string>> ReadCSVFileToStringList()
         {
             string[] paths = { @Environment.CurrentDirectory, Strings.DATA_FILE_WIN };
             string fullPath = Path.Combine(paths);
@@ -74,11 +74,13 @@ namespace SailPoint_AutoComplete_ZG.Data
                 var citiesList = new List<string>();
                 string row;
 
-                while ((row = reader.ReadLine()) != null)
-                {
-                    citiesList.Add(row);
-                }
-                reader.Close();
+                await Task.Run(() => { 
+                    while ((row = reader.ReadLine()) != null)
+                    {
+                        citiesList.Add(row);
+                    }
+                    reader.Close();
+                });
 
                 return citiesList;
             }

@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using SailPoint_AutoComplete_ZG.Data;
 using SailPoint_AutoComplete_ZG.Logic.Models;
-
+using System.Collections.Concurrent;
 
 namespace SailPoint_AutoComplete_ZG.Controllers
 {
@@ -15,16 +15,16 @@ namespace SailPoint_AutoComplete_ZG.Controllers
         // the logger is not used but is still here for future use
         public CitiesController(ILogger<CitiesController> logger)
         {
-            _logger = logger;            
+            _logger = logger;
         }
 
         [HttpGet]
-        public List<string> Get()
+        public async static Task<List<string>> Get()
         {
             try
             {
-                return CacheManager.Instance.GetAllCitiesStringList();
-            } 
+                return await CacheManager.Instance.GetAllCitiesStringList();
+            }
             catch (Exception ex)
             {
                 throw new Exception(ex.Message);
