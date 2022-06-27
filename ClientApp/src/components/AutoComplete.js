@@ -1,6 +1,7 @@
 ﻿import React, { useMemo, useState, useEffect } from "react";
 import debounce from "lodash.debounce";
 import { useSuggestions } from "../services/suggestions.service";
+import { ENTER_TEXT } from "../constants/messages"
 
 import "./AutoComplete.css";
 
@@ -34,8 +35,8 @@ const AutoComplete = () => {
 
   return (
     <div className="suggestionList">
-      <div className="suggestionLabels">
-        <label className="suggestionLabels">Start typing a city name...</label>
+          <div className="suggestionLabels">
+              <label className="suggestionLabels">{ENTER_TEXT}</label>
         <div className="selectedValue">
           {filterText && filterText.length > 0 ? inputValue : " "}
         </div>

@@ -1,11 +1,12 @@
 import React from "react";
 import AutoComplete from "./AutoComplete";
+import { HOME_TITLE } from "../constants/messages"
 import "./AutoComplete.css";
 
 export default function Home() {
   return (
     <div className="main_content">
-      <label className="mainTitle">SailPoint Cities Autocomplete</label>
+          <label className="mainTitle">{HOME_TITLE}</label>
       <label className="secondaryTitle">
         1. The search is not case sensitive.
       </label>
