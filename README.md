@@ -24,6 +24,8 @@ and open this url in the browser.
 
 <hr>
 
+
+
 Server summary:
 
 1. In this project I used the Trie data structure since it's the recommended data structure for an AutoComplete feature.
@@ -38,8 +40,10 @@ since there is no Trie implementation that is a part of Dot Net.
 3. The Cache Manager is a double-check Singleton to provide thread-safety.
 https://riptutorial.com/csharp/example/3864/lazy--thread-safe-singleton--using-double-checked-locking-
 
+4. Currently, changing the Get Cities controller to Async Task is causing a client error so the code is checked-in without it.
 
-
+<br>
+<br>
 
 Client summary:
 
