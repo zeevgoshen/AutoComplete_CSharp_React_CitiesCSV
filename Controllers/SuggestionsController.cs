@@ -40,7 +40,8 @@ namespace SailPoint_AutoComplete_ZG.Controllers
                     // server side validations
                     if (searchString.Length == 0 || (!Utils.IsValidSearchText(searchString)))
                     {
-                        throw new Exception(Strings.VALIDATION_ERR_MESSAGE);
+                        _logger.LogWarning(Strings.VALIDATION_WARNING_MESSAGE);
+                        return null;
                     }
 
                     allCitiesStrings = await CacheManager.Instance.GetAllCitiesStringList();
@@ -52,11 +53,12 @@ namespace SailPoint_AutoComplete_ZG.Controllers
                         trie = Utils.CreateTrieAndSaveInCache(allCitiesStrings);
                     }
 
-                    return SendResultsList(searchString, trie, allCitiesStrings);
+                    return SendResultsList(searchString, trie, allCitiesStrings, _logger);
                 }
                 else
                 {
-                    throw new Exception(Strings.NO_SEARCH_PERFORMED);
+                    _logger.LogWarning(Strings.NO_SEARCH_PERFORMED);
+                    return null;
                 }
             } 
             catch (Exception ex)
@@ -65,7 +67,8 @@ namespace SailPoint_AutoComplete_ZG.Controllers
             }
         }
 
-        public static List<CitiesModel> SendResultsList(string prefix, Trie trie, List<string> allCitiesStrings)
+        public static List<CitiesModel> SendResultsList(string prefix, Trie trie, List<string> allCitiesStrings,
+            ILogger<SuggestionsController> logger)
         {
             try
             {
@@ -74,6 +77,7 @@ namespace SailPoint_AutoComplete_ZG.Controllers
                 if (trie == null)
                 {
                     //return null;
+                    logger.LogDebug(Strings.NULL_TRIE);
                     throw new Exception(Strings.NULL_TRIE);
                 }
 
