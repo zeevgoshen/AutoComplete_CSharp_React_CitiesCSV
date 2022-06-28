@@ -13,6 +13,7 @@
         public const string NULL_SEARCH_QUERY = "No city to search";
         public const string VALIDATION_WARNING_MESSAGE = "You must search a valid city.";
         public const string NO_SEARCH_PERFORMED = "No search was made.";
+        public const string ILLEGAL_CHARS = "Illegal characters found.";
 
     }
 }

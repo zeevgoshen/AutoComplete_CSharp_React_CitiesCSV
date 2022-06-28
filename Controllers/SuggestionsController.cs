@@ -35,10 +35,10 @@ namespace SailPoint_AutoComplete_ZG.Controllers
                 if (query != null && query.Count > 0)
                 {
                     string searchString = query[Strings.QUERY_TEXT].ToString();
-                    searchString = searchString.ToLowerInvariant();
+                    searchString = searchString.ToLowerInvariant().TrimEnd();
 
                     // server side validations
-                    if (searchString.Length == 0 || (!Utils.IsValidSearchText(searchString)))
+                    if (searchString.Length ==0 || !Utils.IsValidSearchText(searchString))
                     {
                         _logger.LogWarning(Strings.VALIDATION_WARNING_MESSAGE);
                         return null;
