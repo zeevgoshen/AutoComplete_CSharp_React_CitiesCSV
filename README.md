@@ -58,4 +58,6 @@ Client summary:
 
 ***** Most testing was done manually/unit testing and debugging, also with the e2e option of Cypress.
 
+<br>
+<b><h2>Input validations are done by Regex both on the client and on the server and might need adjustment regarding special characters, spaces etc...</h2></b>
 
