@@ -32,9 +32,9 @@ Server summary:
 (see comparison with other data structures:)
 https://visualstudiomagazine.com/Articles/2015/10/20/Text-Pattern-Search-Trie-Class-NET.aspx?Page=1
 
-It is not my Trie implementation and was used 99% "as-is", like a nuget package,
-since there is no Trie implementation that is a part of Dot Net.
-https://www.codeproject.com/Articles/5305130/A-Csharp-Library-to-Implement-Array-Tries
+	It is not my Trie implementation and was used 99% "as-is", like a nuget package,
+	since there is no Trie implementation that is a part of Dot Net.
+	https://www.codeproject.com/Articles/5305130/A-Csharp-Library-to-Implement-Array-Tries
 
 2. I used Caching to avoid expansive data fetching (in this case a CSV file, could be DB or others)
 
