@@ -15,7 +15,7 @@ namespace SailPoint_AutoComplete_ZG.Data
         /// <returns></returns>
         public static bool IsValidSearchText(string text)
         {   
-            Regex regex = new Regex(@"^[a-zA-Z ]+(?:[\s-][a-zA-Z]+)*$");
+            Regex regex = new Regex(@"^[a-zA-Z]+(?:[\s-][a-zA-Z]+)*$");
             return regex.Match(text).Success;
         }
         

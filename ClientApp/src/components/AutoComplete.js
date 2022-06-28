@@ -15,7 +15,7 @@ const AutoComplete = () => {
       if (e.target.value) {
         //^[a-zA-Z ]+(?:[\s-][a-zA-Z]+)*$
           //setFilter(e.target.value.replace(/[^a-z -']/gi, ""));
-        setFilter(e.target.value.replace(/[^a-zA-Z ]+(?:[\s-][a-zA-Z]+)*$/gi, ""));
+        setFilter(e.target.value.replace(/[^a-zA-Z]+(?:[\s-][a-zA-Z]+)*$/gi, ""));
     } else {
       setFilter("");
     }
